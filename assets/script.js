@@ -19,6 +19,25 @@ $(document).ready(function () {
 
     //Func to load past searched cities from local storage 
 
+    //Get city name from the input city form
+    $("#get-results").on("click", (event) => {
+        event.preventDefault();
+        $("#city-name").val();
+        getCityName();
+        findCity();
+    })
+
+    function getCityName() {
+        cityName = $("#city-name").val();
+
+        if (!cityName) {
+            window.alert("Please enter a city name");
+            return;
+        } else {
+            return cityName;
+        }
+    }
+
 
 
     // API searches for given city - SET TO AUSTIN FOR SETUP
@@ -27,7 +46,7 @@ $(document).ready(function () {
         let coords = [];
 
         $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/weather?q=Austin&units=imperial&appid=cb32126a8e0dc1a5be8e3ad121f71997",
+            url: "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=cb32126a8e0dc1a5be8e3ad121f71997",
             method: "GET",
 
         }).then(function (response) {
@@ -51,5 +70,5 @@ $(document).ready(function () {
         })
     }
 
-    findCity();
+    // findCity();
 })
