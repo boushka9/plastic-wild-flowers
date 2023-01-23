@@ -17,7 +17,7 @@ $(document).ready(function () {
     //call on page load
     defaultCity();
 
-    //cityHistory is retrieved w key city
+    //cityHistory is retrieved w key city (if no history = empty array)
     let cityHistory = JSON.parse(localStorage.getItem("city")) || [];
 
 
@@ -31,6 +31,17 @@ $(document).ready(function () {
         localStorage.setItem("city", JSON.stringify(cityHistory));
         console.log(cityHistory);
     })
+
+    //for each city i city history, run func to render
+    for (var i = 0; i < cityHistory.length; i++) {
+        renderPastCity(cityHistory[i]);
+    }
+
+    //create a list item for each city
+    function renderPastCity(cityText) {
+        let cityItem = $("<li>").addClass("city-li").text(cityText);
+        $("#stored-cities").append(cityItem);
+    }
 
     function getCityName() {
         cityName = $("#city-name").val();

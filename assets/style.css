@@ -22,8 +22,8 @@ h2 {
     margin-top: 19px;
 }
 
-h4 {
-    font-size: 1.5rem;
+h4, .city-li, [type="submit"] {
+    font-size: 1.4rem;
 }
 
 p {
@@ -53,13 +53,43 @@ aside, main {
     margin: 0 10px;
 }
 
-.city-search {
+.city-search, .input {
     display: flex;
     flex-direction: column;
 }
 
+
+
 [type="submit"] {
-    margin-top: 2px;
+    margin: 2px;
+    background-color: var(--deep);
+    color: var(--light);
+    border-radius: 5px;
+    box-shadow: 1.0px 2.0px 2.0px var(--stormy);
+    transition: transform .2s;
+}
+
+[type="submit"]:hover {
+    box-shadow: 1.5px 3.2px 3.2px  var(--stormy);
+}
+
+
+#stored-cities {
+    display: flex;
+    flex-direction: column;
+}
+.city-li {
+    background-color: var(--stormy);
+    color: var(--light);
+    margin: 14px 2px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 1.0px 2.0px 2.0px var(--deep);
+    transition: transform .2s;
+}
+
+.city-li:hover {
+    box-shadow: 1.5px 3.2px 3.2px  var(--deep);
 }
 
 hr {
