@@ -11,7 +11,14 @@ $(document).ready(function () {
     let day4date = moment().add(4, "days").format("L");
     let day5date = moment().add(5, "days").format("L");
 
-   //set default city to austin so page isn't blank on first load
+   //set city to Austin and run func to get weather so page isn't blank on first load
+    function defaultCity() {
+        cityName ="Austin";
+        findCity();
+    }
+    //call on page load
+    defaultCity();
+
 
    //past searches are retrieved from local storage w key pastCities
 
@@ -19,10 +26,9 @@ $(document).ready(function () {
 
     //Func to load past searched cities from local storage 
 
-    //Get city name from the input city form
+    //Listen for submit on click button then run finction to get city name and plug it into api call
     $("#get-results").on("click", (event) => {
         event.preventDefault();
-        $("#city-name").val();
         getCityName();
         findCity();
     })
@@ -36,11 +42,10 @@ $(document).ready(function () {
         } else {
             return cityName;
         }
+        
     }
 
-
-
-    // API searches for given city - SET TO AUSTIN FOR SETUP
+    // API searches for inputed city name
     function findCity() {
         
         let coords = [];
@@ -60,7 +65,7 @@ $(document).ready(function () {
             let currentTemp = response.main.temp;
             let currentHum = response.main.humidity;
             let currentWind = response.wind.speed;
-        
+            //render variables from api onto page
             $("#current-name").html(currentName);
             $("#current-date").text(currentDate);
             $("#icon").html(`<img src="http://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
@@ -70,5 +75,5 @@ $(document).ready(function () {
         })
     }
 
-    // findCity();
+    
 })
