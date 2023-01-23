@@ -32,6 +32,14 @@ $(document).ready(function () {
         console.log(cityHistory);
     })
 
+
+    //Listen for submit on click button then run finction to get city name and plug it into api call
+    $("#get-results").on("click", (event) => {
+        event.preventDefault();
+        getCityName();
+        findCity();
+    })
+
     function getCityName() {
         cityName = $("#city-name").val();
 
