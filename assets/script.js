@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
     //gets current date in MM/DD/YYYY format
     let currentDate = moment().format("L");
 
@@ -47,12 +45,15 @@ $(document).ready(function () {
     }
 
     // API searches for inputed city name
+
     function findCity() {
         
         let coords = [];
 
         $.ajax({
+
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=cb32126a8e0dc1a5be8e3ad121f71997",
+
             method: "GET",
 
         }).then(function (response) {
@@ -66,6 +67,7 @@ $(document).ready(function () {
             let currentTemp = response.main.temp;
             let currentHum = response.main.humidity;
             let currentWind = response.wind.speed;
+
             //render variables from api onto page
             $("#current-name").html(currentName);
             $("#current-date").text(currentDate);
@@ -75,7 +77,6 @@ $(document).ready(function () {
             $("#wind").text("Current Wind Speeds: " + currentWind + "mph");
         })
     }
-
-
+        findCity();
 
 })
