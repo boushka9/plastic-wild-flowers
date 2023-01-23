@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500&family=Montserrat&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+    <header>
+      <h1 class="text-center">Weather Forcast</h1>
+    </header>
+    <section class="l-r">
+        <aside>
+          <secion class="city-search">
+              <h2>Search for a City:</h2>
+              <form class="input">
+                  <input id="city-name" type="text" placeholder="Enter City Name">
+                  <input id="get-results" type="submit">
+              </form>
+          </secion>
+          <hr>
+          <section class="past-cities">
+              <ul id="stored-cities"></ul>
+          </section>
+        </aside>
+        <main>
+            <section class="display-current-city">
+                <h4 id="current-date"></h4>
+                <h2 id="current-name"></h2>
+                <div id="icon"></div>
+                <h4 id="current-temp"></h4>
+                <h4 id="humidity"></h4>
+                <h4 id="wind"></h4>
+            </section>
+            <section class="forcast">
+                <h2>5-Day Forcast:</h2>
+                <div class="weather-cards">
+                    <!--empty divs for 5-day forcast-->
+                    <div class="fivedays"></div>
+                    <div class="fivedays"></div>
+                    <div class="fivedays"></div>
+                    <div class="fivedays"></div>
+                    <div class="fivedays"></div>
+                </div>
+          </section>
+        </main>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>
