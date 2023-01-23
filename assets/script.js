@@ -32,6 +32,7 @@ $(document).ready(function () {
         console.log(cityHistory);
     })
 
+
     //for each city i city history, run func to render
     for (var i = 0; i < cityHistory.length; i++) {
         renderPastCity(cityHistory[i]);
@@ -42,6 +43,7 @@ $(document).ready(function () {
         let cityItem = $("<li>").addClass("city-li").text(cityText);
         $("#stored-cities").append(cityItem);
     }
+
 
     function getCityName() {
         cityName = $("#city-name").val();
