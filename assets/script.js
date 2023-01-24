@@ -9,9 +9,10 @@ $(document).ready(function () {
     let day4date = moment().add(4, "days").format("L");
     let day5date = moment().add(5, "days").format("L");
 
+
    //set city to Austin and run func to get weather so page isn't blank on first load
     function defaultCity() {
-        cityName ="Austin";
+        cityName = "Austin";
         findCity();
     }
     //call on page load
@@ -27,13 +28,22 @@ $(document).ready(function () {
         event.preventDefault();
         getCityName();
         findCity();
-        cityHistory.push(cityName);
-        localStorage.setItem("city", JSON.stringify(cityHistory));
-        console.log(cityHistory);
+        // If city name is not in cityHistory, add it to localStorage
+        if (cityHistory.includes(cityName) === false) {
+            cityHistory.push(cityName);
+            localStorage.setItem("city", JSON.stringify(cityHistory));
+        }
+        //ignore portion of array that is already rendered, only what is not listed on screen will apear
+        $("#stored-cities").html("");
+        //on submit click, run func to render, stop render after ten 
+        for (var i = 0; i < cityHistory.length && i < 10; i++) {
+            renderPastCity(cityHistory[i]);
+        }
+
     })
 
-    //for each city i city history, run func to render
-    for (var i = 0; i < cityHistory.length; i++) {
+    // on page load, for each city i city history, run func to render, stop render after ten 
+    for (var i = 0; i < cityHistory.length && i < 10; i++) {
         renderPastCity(cityHistory[i]);
     }
 
@@ -42,6 +52,8 @@ $(document).ready(function () {
         let cityItem = $("<li>").addClass("city-li").text(cityText);
         $("#stored-cities").append(cityItem);
     }
+
+
 
     function getCityName() {
         cityName = $("#city-name").val();
@@ -54,6 +66,7 @@ $(document).ready(function () {
         }
         
     }
+
 
     // API searches for inputed city name
 
