@@ -22,17 +22,17 @@ h2 {
     margin-top: 19px;
 }
 
-h4, .city-li, [type="submit"] {
+h4, .city-li, [type="submit"]  {
     font-size: 1.4rem;
 }
 
-p {
+p, #clear {
     font-size: 1.1rem;
 }
 
 header {
     display: flex;
-    background-color: var(--deep);
+    background-image: linear-gradient(var(--deep), var(--stormy));
     margin: 4px;
     border-radius: 10px;
     height: 8rem;
@@ -50,18 +50,21 @@ header > h1 {
     grid-template-columns: 1fr 3fr;
 }
 
-aside, main {
+aside, main, #stored-cities {
     margin: 0 10px;
 }
 
-.city-search, .input, #stored-cities, .display-current-city {
+.city-search, .input, #stored-cities, .past-cities {
     display: flex;
     flex-direction: column;
 }
 
+#city-name {
+    margin: 0 10px 10px 0;
+}
 
 
-[type="submit"] {
+[type="submit"], #clear {
     margin: 2px;
     background-color: var(--deep);
     color: var(--light);
@@ -70,15 +73,14 @@ aside, main {
     transition: transform .2s;
 }
 
-[type="submit"]:hover {
+[type="submit"]:hover, #clear:hover {
     box-shadow: 1.5px 3.2px 3.2px  var(--stormy);
 }
-
 
 .city-li {
     background-color: var(--stormy);
     color: var(--light);
-    margin: 14px 2px;
+    margin: 11px 2px;
     text-align: center;
     border-radius: 5px;
     box-shadow: 1.0px 2.0px 2.0px var(--deep);
@@ -89,10 +91,16 @@ aside, main {
     box-shadow: 1.5px 3.2px 3.2px  var(--deep);
 }
 
-hr {
-    display: none;
+hr, #clear {
     margin: 10px 0;
 }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .display-current-city {
     border-radius: 5px;
@@ -100,10 +108,6 @@ hr {
     transition: transform .2s;
     background-color: var(--pale);
     color: var(--deep);
-}
-
-.text {
-    margin-left: 20px;
 }
 
 .current-title {
@@ -115,7 +119,7 @@ hr {
     margin-left: 10px;
 }
 
-#city-name, .city-info {
+.city-info {
     margin-left: 10px;
 }
 

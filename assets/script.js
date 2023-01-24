@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     //Listen for submit on click button then run finction to get city name and plug it into api call
     //On click, the city name is also saved to the cityHistory local storage
-    $("#get-results").on("click", (event) => {
+    $("#get-results").on("click", function submitCity(event) {
         event.preventDefault();
         getCityName();
         findCity();
@@ -61,7 +61,13 @@ $(document).ready(function () {
         //then run the function to render the city with the clicked cityName
         return findCity(cityName);
     })
-    
+
+     // clear local storage 
+     $("#clear").on("click", () => {
+        localStorage.removeItem("city");
+        $("#stored-cities").empty();
+     })
+
     // city name = input box, must have a name written in it
     function getCityName() {
         cityName = $("#city-name").val();
@@ -109,4 +115,8 @@ $(document).ready(function () {
         })
     }
         findCity();
-})        
+
+    
+})  
+
+
