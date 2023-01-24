@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     //Listen for submit on click button then run finction to get city name and plug it into api call
     //On click, the city name is also saved to the cityHistory local storage
-    $("#get-results").on("click", (event) => {
+    $("#get-results").on("click", function submitCity(event) {
         event.preventDefault();
         getCityName();
         findCity();
@@ -53,8 +53,22 @@ $(document).ready(function () {
         $("#stored-cities").append(cityItem);
     }
 
+    // if past city is clicked, render that city again
+    $("#stored-cities li").on("click", (event) => {
+        //on click, get the value of the clicked list item and set that to cityName
+        let runAgain = $(event.target);
+        cityName = runAgain.text();
+        //then run the function to render the city with the clicked cityName
+        return findCity(cityName);
+    })
 
+     // clear local storage 
+     $("#clear").on("click", () => {
+        localStorage.removeItem("city");
+        $("#stored-cities").empty();
+     })
 
+    // city name = input box, must have a name written in it
     function getCityName() {
         cityName = $("#city-name").val();
 
@@ -69,7 +83,6 @@ $(document).ready(function () {
 
 
     // API searches for inputed city name
-
     function findCity() {
         
         let coords = [];
@@ -93,7 +106,7 @@ $(document).ready(function () {
             let currentWind = response.wind.speed;
 
             //render variables from api onto page
-            $("#current-name").html(currentName);
+            $("#current-name").text(currentName);
             $("#current-date").text(currentDate);
             $("#icon").html(`<img src="http://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
             $("#current-temp").text("Current Tempurature in (F): " + currentTemp + "°");
@@ -102,4 +115,8 @@ $(document).ready(function () {
         })
     }
         findCity();
-})        
+
+    
+})  
+
+
