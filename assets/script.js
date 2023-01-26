@@ -1,13 +1,13 @@
 $(document).ready(function () {
     //gets current date in MM/DD/YYYY format
     let currentDate = moment().format("L");
+    // add one day for each five day forcast
+    let date1 = moment().add(1, "days").format("l");
+    let date2 = moment().add(2, "days").format("l");
+    let date3 = moment().add(3, "days").format("l");
+    let date4 = moment().add(4, "days").format("l");
+    let date5 = moment().add(5, "days").format("l");
 
-    // add a # of days from current day to get dates for 5-day forcast
-    let day1date = moment().add(1, "days").format("L");
-    let day2date = moment().add(2, "days").format("L");
-    let day3date = moment().add(3, "days").format("L");
-    let day4date = moment().add(4, "days").format("L");
-    let day5date = moment().add(5, "days").format("L");
 
 
    //set city to Austin and run func to get weather so page isn't blank on first load
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     //Listen for submit on click button then run finction to get city name and plug it into api call
     //On click, the city name is also saved to the cityHistory local storage
-    $("#get-results").on("click", function submitCity(event) {
+    $("#get-results").on("click", (event) => {
         event.preventDefault();
         getCityName();
         findCity();
@@ -71,7 +71,7 @@ $(document).ready(function () {
     // city name = input box, must have a name written in it
     function getCityName() {
         cityName = $("#city-name").val();
-
+        // if input box empty, dont't run
         if (!cityName) {
             window.alert("Please enter a city name");
             return;
@@ -85,7 +85,6 @@ $(document).ready(function () {
     // API searches for inputed city name
     function findCity() {
         
-        let coords = [];
 
         $.ajax({
 
@@ -94,11 +93,9 @@ $(document).ready(function () {
             method: "GET",
 
         }).then(function (response) {
-            //response returns from lat/lon of city
-            coords.push(response.coord.lat);
-            coords.push(response.coord.lon);
 
             //weather variables from api
+            let cityID = response.id;
             let currentName = response.name;
             let currentIcon = response.weather[0].icon;
             let currentTemp = response.main.temp;
@@ -112,11 +109,85 @@ $(document).ready(function () {
             $("#current-temp").text("Current Tempurature in (F): " + currentTemp + "°");
             $("#humidity").text("Current Humidity Levels: " + currentHum + "%");
             $("#wind").text("Current Wind Speeds: " + currentWind + "mph");
+
+
+            getFiveDays(cityID);
         })
     }
-        findCity();
+
+
+    function getFiveDays(cityID) {
+        //get five day forcast using the city id from the prev. api call
+        $.ajax({
+            url: "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=cb32126a8e0dc1a5be8e3ad121f71997",
+            method: "GET",
+        }).then(function (response) {
+            //variables for each days icon
+            let icon1 = response.list[0].weather[0].icon;
+            let icon2 = response.list[1].weather[0].icon;
+            let icon3 = response.list[2].weather[0].icon;
+            let icon4 = response.list[3].weather[0].icon;
+            let icon5 = response.list[4].weather[0].icon;
+            //variables for each days temp
+            let temp1 = response.list[0].main.temp;
+            let temp2 = response.list[1].main.temp;
+            let temp3 = response.list[2].main.temp;
+            let temp4 = response.list[3].main.temp;
+            let temp5 = response.list[4].main.temp;
+            //variables for each days humidity
+            let hum1 = response.list[0].main.humidity;
+            let hum2 = response.list[1].main.humidity;
+            let hum3 = response.list[2].main.humidity;
+            let hum4 = response.list[3].main.humidity;
+            let hum5 = response.list[4].main.humidity;
+            //variables for each days wind speed
+            let wind1 = response.list[0].wind.speed;
+            let wind2 = response.list[1].wind.speed;
+            let wind3 = response.list[2].wind.speed;
+            let wind4 = response.list[3].wind.speed;
+            let wind5 = response.list[4].wind.speed;
+
+            console.log(wind1);
+            
+            //set variables from api to the text/html to render onto the screen
+            $("#date1").text(date1);
+            $("#date2").text(date2);
+            $("#date3").text(date3);
+            $("#date4").text(date4);
+            $("#date5").text(date5);
+
+            $("#icon1").html(`<img src="http://openweathermap.org/img/wn/${icon1}@2x.png">`);
+            $("#icon2").html(`<img src="http://openweathermap.org/img/wn/${icon2}@2x.png">`);
+            $("#icon3").html(`<img src="http://openweathermap.org/img/wn/${icon3}@2x.png">`);
+            $("#icon4").html(`<img src="http://openweathermap.org/img/wn/${icon4}@2x.png">`);
+            $("#icon5").html(`<img src="http://openweathermap.org/img/wn/${icon5}@2x.png">`);
+
+            $("#temp1").text("Temp: " + temp1 + "°");
+            $("#temp2").text("Temp: " + temp2 + "°");
+            $("#temp3").text("Temp: " + temp3 + "°");
+            $("#temp4").text("Temp: " + temp4 + "°");
+            $("#temp5").text("Temp: " + temp5 + "°");
+
+            $("#hum1").text(hum1 + "%");
+            $("#hum2").text(hum2 + "%");
+            $("#hum3").text(hum3 + "%");
+            $("#hum4").text(hum4 + "%");
+            $("#hum5").text(hum5 + "%");
+
+            $("#wind1").text("Wind: " + wind1 + "mph");
+            $("#wind2").text("Wind: " + wind2 + "mph");
+            $("#wind3").text("Wind: " + wind3 + "mph");
+            $("#wind4").text("Wind: " + wind4 + "mph");
+            $("#wind5").text("Wind: " + wind5 + "mph");
+
+            //TO THE GRADER: I would apreciate constructive criticism on how to render the five days in a for loop
+
+
+        })
 
     
-})  
+    };
+
+});  
 
 
