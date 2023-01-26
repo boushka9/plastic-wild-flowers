@@ -32,7 +32,8 @@ p, #clear {
 
 header {
     display: flex;
-    background-image: linear-gradient(var(--deep), var(--stormy));
+    background-color: var(--deep);
+    box-shadow: 1.0px 2.0px 2.0px var(--stormy);
     margin: 4px;
     border-radius: 10px;
     height: 8rem;
@@ -43,6 +44,7 @@ header {
 header > h1 {
     font-size: 4rem;
     color: var(--light);
+    font-weight: 500;
 }
 
 .l-r {
@@ -64,7 +66,7 @@ aside, main, #stored-cities {
 }
 
 
-[type="submit"], #clear {
+[type="submit"], #clear, .cards {
     margin: 2px;
     background-color: var(--deep);
     color: var(--light);
@@ -114,6 +116,11 @@ hr, #clear {
     display: inline-flex;
 }
 
+#current-name, #current-date {
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
 #current-date {
     align-self: center;
     margin-left: 10px;
@@ -130,13 +137,12 @@ hr, #clear {
 .weather-cards {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.card {
-    width: 15%;
-    text-align: left;
-    background-color: var(--deep);
-    color: var(--light);
-}
-
+.cards {
+    width: 18%;
+    text-align: center;
+    font-weight: 300;
+}    
