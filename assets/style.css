@@ -1,0 +1,148 @@
+:root {
+    --light: #fdfdff;
+    --pale: #cbccd3;
+    --dark: #393E41;
+    --stormy: #678596;
+    --deep: #152842;
+}
+
+
+main, .l-r {
+    background-color: var(--light);
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 19px;
+}
+
+h4, .city-li, [type="submit"]  {
+    font-size: 1.4rem;
+}
+
+p, #clear {
+    font-size: 1.1rem;
+}
+
+header {
+    display: flex;
+    background-color: var(--deep);
+    box-shadow: 1.0px 2.0px 2.0px var(--stormy);
+    margin: 4px;
+    border-radius: 10px;
+    height: 8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+header > h1 {
+    font-size: 4rem;
+    color: var(--light);
+    font-weight: 500;
+}
+
+.l-r {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+aside, main, #stored-cities {
+    margin: 0 10px;
+}
+
+.city-search, .input, #stored-cities, .past-cities {
+    display: flex;
+    flex-direction: column;
+}
+
+#city-name {
+    margin: 0 10px 10px 0;
+}
+
+
+[type="submit"], #clear, .cards {
+    margin: 2px;
+    background-color: var(--deep);
+    color: var(--light);
+    border-radius: 5px;
+    box-shadow: 1.0px 2.0px 2.0px var(--stormy);
+    transition: transform .2s;
+}
+
+[type="submit"]:hover, #clear:hover {
+    box-shadow: 1.5px 3.2px 3.2px  var(--stormy);
+}
+
+.city-li {
+    background-color: var(--stormy);
+    color: var(--light);
+    margin: 11px 2px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 1.0px 2.0px 2.0px var(--deep);
+    transition: transform .2s;
+}
+
+.city-li:hover {
+    box-shadow: 1.5px 3.2px 3.2px  var(--deep);
+}
+
+hr, #clear {
+    margin: 10px 0;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.display-current-city {
+    border-radius: 5px;
+    box-shadow: 2.6px 5.1px 5.1px var(--stormy);
+    transition: transform .2s;
+    background-color: var(--pale);
+    color: var(--deep);
+}
+
+.current-title {
+    display: inline-flex;
+}
+
+#current-name, #current-date {
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+#current-date {
+    align-self: center;
+    margin-left: 10px;
+}
+
+.city-info {
+    margin-left: 10px;
+}
+
+.forcast {
+    margin-top: 15px;
+}
+
+.weather-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cards {
+    width: 18%;
+    text-align: center;
+    font-weight: 300;
+}    
