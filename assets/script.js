@@ -1,13 +1,6 @@
 $(document).ready(function () {
     //gets current date in MM/DD/YYYY format
     let currentDate = moment().format("L");
-    // add one day for each five day forcast
-    let date1 = moment().add(1, "days").format("l");
-    let date2 = moment().add(2, "days").format("l");
-    let date3 = moment().add(3, "days").format("l");
-    let date4 = moment().add(4, "days").format("l");
-    let date5 = moment().add(5, "days").format("l");
-
 
 
    //set city to Austin and run func to get weather so page isn't blank on first load
@@ -51,16 +44,17 @@ $(document).ready(function () {
     function renderPastCity(cityText) {
         let cityItem = $("<li>").addClass("city-li").text(cityText);
         $("#stored-cities").append(cityItem);
-    }
 
-    // if past city is clicked, render that city again
-    $("#stored-cities li").on("click", (event) => {
+        // if past city is clicked, render that city again (moved inside render past city func so you don't have to refresh page to run click func)
+        $("#stored-cities li").on("click", (event) => {
         //on click, get the value of the clicked list item and set that to cityName
         let runAgain = $(event.target);
         cityName = runAgain.text();
         //then run the function to render the city with the clicked cityName
         return findCity(cityName);
     })
+    }
+
 
      // clear local storage 
      $("#clear").on("click", () => {
@@ -122,66 +116,40 @@ $(document).ready(function () {
             url: "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=cb32126a8e0dc1a5be8e3ad121f71997",
             method: "GET",
         }).then(function (response) {
-            //variables for each days icon
-            let icon1 = response.list[0].weather[0].icon;
-            let icon2 = response.list[1].weather[0].icon;
-            let icon3 = response.list[2].weather[0].icon;
-            let icon4 = response.list[3].weather[0].icon;
-            let icon5 = response.list[4].weather[0].icon;
-            //variables for each days temp
-            let temp1 = response.list[0].main.temp;
-            let temp2 = response.list[1].main.temp;
-            let temp3 = response.list[2].main.temp;
-            let temp4 = response.list[3].main.temp;
-            let temp5 = response.list[4].main.temp;
-            //variables for each days humidity
-            let hum1 = response.list[0].main.humidity;
-            let hum2 = response.list[1].main.humidity;
-            let hum3 = response.list[2].main.humidity;
-            let hum4 = response.list[3].main.humidity;
-            let hum5 = response.list[4].main.humidity;
-            //variables for each days wind speed
-            let wind1 = response.list[0].wind.speed;
-            let wind2 = response.list[1].wind.speed;
-            let wind3 = response.list[2].wind.speed;
-            let wind4 = response.list[3].wind.speed;
-            let wind5 = response.list[4].wind.speed;
+            const weatherCards = document.querySelectorAll(".cards");
+            for (var i = 0; i < weatherCards.length; i++){
+                weatherCards[i].innerHTML ="";
+                //get date for each i and create and set html element/value and append to weather cards i string
+                let forcastDate = moment().add(1 + i, "days").format("l");
+                let forcastDateEl = document.createElement("p");
+                forcastDateEl.innerHTML = forcastDate;
+                weatherCards[i].append(forcastDateEl);
 
-            console.log(wind1);
+                //get icon for each i and create and set html element/value and append to weather cards i string
+                let forcastIcon = response.list[i].weather[0].icon;
+                let forcastIconEl = document.createElement("img");
+                forcastIconEl.setAttribute("src", `http://openweathermap.org/img/wn/${forcastIcon}@2x.png`);
+                weatherCards[i].append(forcastIconEl);
+
+                //get temp for each i and create and set html element/value and append to weather cards i string
+                let forcastTemp = response.list[i].main.temp;
+                let forcastTempEl = document.createElement("p");
+                forcastTempEl.innerHTML = "Temp: " + forcastTemp + "° (F)";
+                weatherCards[i].append(forcastTempEl);
+
+                // get humidity for each i and create and set html element/value and append to weather cards i string
+                let forcastHum = response.list[i].main.humidity;
+                let forcastHumEl =document.createElement("p");
+                forcastHumEl.innerHTML = "Humidity: " + forcastHum + "%"
+                weatherCards[i].append(forcastHumEl);
+                
+                // get wind speed for each i and create and set html element/value and append to weather cards i string
+                let forcastWind = response.list[i].wind.speed;
+                let forcastWindEl = document.createElement("p");
+                forcastWindEl.innerHTML = "Wind: " + forcastWind + "mph";
+                weatherCards[i].append(forcastWindEl);
+            }
             
-            //set variables from api to the text/html to render onto the screen
-            $("#date1").text(date1);
-            $("#date2").text(date2);
-            $("#date3").text(date3);
-            $("#date4").text(date4);
-            $("#date5").text(date5);
-
-            $("#icon1").html(`<img src="http://openweathermap.org/img/wn/${icon1}@2x.png">`);
-            $("#icon2").html(`<img src="http://openweathermap.org/img/wn/${icon2}@2x.png">`);
-            $("#icon3").html(`<img src="http://openweathermap.org/img/wn/${icon3}@2x.png">`);
-            $("#icon4").html(`<img src="http://openweathermap.org/img/wn/${icon4}@2x.png">`);
-            $("#icon5").html(`<img src="http://openweathermap.org/img/wn/${icon5}@2x.png">`);
-
-            $("#temp1").text("Temp: " + temp1 + "°");
-            $("#temp2").text("Temp: " + temp2 + "°");
-            $("#temp3").text("Temp: " + temp3 + "°");
-            $("#temp4").text("Temp: " + temp4 + "°");
-            $("#temp5").text("Temp: " + temp5 + "°");
-
-            $("#hum1").text(hum1 + "%");
-            $("#hum2").text(hum2 + "%");
-            $("#hum3").text(hum3 + "%");
-            $("#hum4").text(hum4 + "%");
-            $("#hum5").text(hum5 + "%");
-
-            $("#wind1").text("Wind: " + wind1 + "mph");
-            $("#wind2").text("Wind: " + wind2 + "mph");
-            $("#wind3").text("Wind: " + wind3 + "mph");
-            $("#wind4").text("Wind: " + wind4 + "mph");
-            $("#wind5").text("Wind: " + wind5 + "mph");
-
-            //TO THE GRADER: I would apreciate constructive criticism on how to render the five days in a for loop
-
 
         })
 
@@ -191,3 +159,4 @@ $(document).ready(function () {
 });  
 
 
+        
