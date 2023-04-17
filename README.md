@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/imgs/card.png" alt="Schedule Header" width=350px>
+    <img src="./assets/imgs/card.png" alt="Schedule Header" width=300px>
 </p>
 
 ## <img src="./assets/imgs/about.png" alt="About Header" height="40px">
