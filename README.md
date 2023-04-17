@@ -32,7 +32,7 @@ No Installation is necessary to use this application. The deployed page can be a
 
 MIT
 
-## <img src="./Assets/imgs/screenshots.png" alt="screenshots Header" height="40px">
+## <img src="./assets/imgs/screenshots.png" alt="screenshots Header" height="40px">
 
 <p align="center">
     <img src="./assets/imgs/full-page.png" alt="Search history and weather conditions displayed" width="75%">
