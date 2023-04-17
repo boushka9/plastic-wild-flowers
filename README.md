@@ -7,7 +7,7 @@ The purpose of this project was to create a basic weather forecaster using jQuer
 
 ## <img src="./assets/imgs/installation.png" alt="Installation Header" height="40px">
 
-No Installation is necessary to use this application. The deployed page can be accessed at https://boushka9.github.io/wild-plastic-plants/.
+No Installation is necessary to use this application. The deployed page can be accessed at https://boushka9.github.io/plastic-wild-flowers/.
 
 
 ## <img src="./assets/imgs/usage.png" alt="Usage Header" height="40px">
