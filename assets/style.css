@@ -2,8 +2,9 @@
     --light: #fdfdff;
     --pale: #cbccd3;
     --dark: #393E41;
-    --stormy: #678596;
+    --stormy: #737373;
     --deep: #152842;
+    --bright: #F6C852;
 }
 
 
@@ -68,24 +69,28 @@ aside, main, #stored-cities {
 
 [type="submit"], #clear, .cards {
     margin: 2px;
-    background-color: var(--deep);
-    color: var(--light);
     border-radius: 5px;
     box-shadow: 1.0px 2.0px 2.0px var(--stormy);
     transition: transform .2s;
 }
+
+[type="submit"], #clear {
+    background-color: var(--deep);
+    color: var(--light);
+}
+
 
 [type="submit"]:hover, #clear:hover {
     box-shadow: 1.5px 3.2px 3.2px  var(--stormy);
 }
 
 .city-li {
-    background-color: var(--stormy);
-    color: var(--light);
+    background-color: var(--bright);
+    color: var(--dark);
     margin: 11px 2px;
     text-align: center;
     border-radius: 5px;
-    box-shadow: 1.0px 2.0px 2.0px var(--deep);
+    box-shadow: 1.0px 2.0px 2.0px var(--stormy);
     transition: transform .2s;
 }
 
@@ -109,7 +114,9 @@ hr, #clear {
     border-radius: 5px;
     box-shadow: 2.6px 5.1px 5.1px var(--stormy);
     transition: transform .2s;
-    background-color: var(--pale);
+    background-image: url(imgs/current-back.png);
+    background-size: cover;
+    background-position: center;
     color: var(--deep);
 }
 
@@ -146,4 +153,15 @@ hr, #clear {
     width: 18%;
     text-align: center;
     font-weight: 300;
-}    
+    background-image: url(imgs/card-back.png);
+    background-size: cover;
+    background-position: center;
+}  
+
+.cards img {
+    width: 60px;
+}
+
+#icon img {
+    width: 180px;
+}

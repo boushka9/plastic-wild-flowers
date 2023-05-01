@@ -95,11 +95,12 @@ $(document).ready(function () {
             let currentTemp = response.main.temp;
             let currentHum = response.main.humidity;
             let currentWind = response.wind.speed;
+            console.log(cityID)
 
             //render variables from api onto page
             $("#current-name").text(currentName);
             $("#current-date").text(currentDate);
-            $("#icon").html(`<img src="https://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
+            $("#icon").html(`<img src="../assets/imgs/${currentIcon}.png">`);
             $("#current-temp").text("Current Tempurature in (F): " + currentTemp + "°");
             $("#humidity").text("Current Humidity Levels: " + currentHum + "%");
             $("#wind").text("Current Wind Speeds: " + currentWind + "mph");
@@ -128,7 +129,7 @@ $(document).ready(function () {
                 //get icon for each i and create and set html element/value and append to weather cards i string
                 let forcastIcon = response.list[i].weather[0].icon;
                 let forcastIconEl = document.createElement("img");
-                forcastIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${forcastIcon}@2x.png`);
+                forcastIconEl.setAttribute("src", `../assets/imgs/${forcastIcon}.png`); // Dynamically put the icon by ./assets/imgs/${forcastIcon}.png
                 weatherCards[i].append(forcastIconEl);
 
                 //get temp for each i and create and set html element/value and append to weather cards i string
