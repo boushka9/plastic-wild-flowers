@@ -35,5 +35,5 @@ MIT
 ## <img src="./assets/imgs/screenshots.png" alt="screenshots Header" height="40px">
 
 <p align="center">
-    <img src="./assets/imgs/09d.png" alt="Rainy day" width="75%">
+    <img src="./assets/imgs/09d.png" alt="Rainy day" width="300px">
 </p>
