@@ -35,5 +35,5 @@ MIT
 ## <img src="./assets/imgs/screenshots.png" alt="screenshots Header" height="40px">
 
 <p align="center">
-    <img src="./assets/imgs/full-page.png" alt="Search history and weather conditions displayed" width="75%">
+    <img src="./assets/imgs/09d.png" alt="Rainy day" width="75%">
 </p>
